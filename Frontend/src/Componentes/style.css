@@ -1,0 +1,43 @@
+
+.card-father{
+    display: flex;
+    justify-content: center;
+}
+.calendario-container{
+    margin-top: 20px;
+    border-color: white;
+    border:5px;
+    border: solid;
+    padding: 5px;
+}
+.card-container{
+    display: flex;
+}
+
+.card-children{
+    border: solid 3px;
+    border-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.listadoperiodos{
+    display: inline-block;
+    list-style-type: none;
+}
+
+.listadoperiodos li {
+    list-style-type: none;
+    border: 1px solid antiquewhite;
+    padding: 1px;
+    
+}
+
+.grid-card-periodos{
+    display: grid;
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minma(150px,1fr)
+    );
+}
