@@ -1,4 +1,5 @@
 import './style.css'
+import Swal from 'sweetalert2'
 function Periodoindividual({ periodos }) {
   return (
     <div>
@@ -10,6 +11,9 @@ function Periodoindividual({ periodos }) {
           <li>Total kwh cosumidos: {periodos.costotalkwh}</li>
           <li>Total a pagar: {periodos.costototalmensual}</li>
           <li>Valor de cada kwh: {periodos.costoporkwh}</li>
+          <button onClick={()=>{
+            Swal.fire('Hola')
+          }}>Pagar</button>
         </ul>
       </div>
     </div>

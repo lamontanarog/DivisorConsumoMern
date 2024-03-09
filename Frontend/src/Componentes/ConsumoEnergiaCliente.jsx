@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ListadoCalendario from './listadocalendario';
 import axios from 'axios';
+import CalcularDiferenciaKwh from './CalcularDiferenciaKwh';
 
 function ConsumoEnergiaCliente() {
     
@@ -25,11 +26,17 @@ function ConsumoEnergiaCliente() {
             console.log(err)
         })
     },[setDataPeriodos]);
+
+    console.log(dataPeriodos);
     return (
         <>
         <div>
             <h1>Periodos de energia</h1>
             <ListadoCalendario/>
+        </div>
+        <div>
+            <h2>calcular diferencia de periodos</h2>
+            <CalcularDiferenciaKwh/>
         </div>
             <h2>Calculadora de Consumo de Energía particular</h2>
             <div>
