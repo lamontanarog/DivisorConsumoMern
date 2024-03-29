@@ -1,30 +1,25 @@
 import { useState, useEffect } from 'react';
 import ListadoCalendario from './listadocalendario';
-import axios from 'axios';
+
+import usePeriodoSeleccionado from '../Zustand/useSelectPeriod';
 
 function ConsumoEnergiaCliente() {
     
     const [consumoCliente, setConsumoCliente] = useState('');
     const [pagoCliente, setPagoCliente] = useState('');
-    const [dataPeriodos, setDataPeriodos] = useState([])
+
+    const {periodoSeleccionado} = usePeriodoSeleccionado();
     
 
     const calcularPagoCliente = () => {
-        const pagoCliente = consumoCliente * costoPorKwh;
-        setPagoCliente(pagoCliente);
-        console.log(pagoCliente)
-        
+        if (periodoSeleccionado) {
+            const pagoCliente = consumoCliente * periodoSeleccionado.costoPorKwh;
+            setPagoCliente(pagoCliente);
+        } else {
+            alert('Por favor, selecciona un periodo.')
+        }
     }
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/rutas/obtenerperiodos')
-        .then(res => {
-            console.log(res.data)
-            setDataPeriodos(res.data)
-        }).catch(err => {
-            console.log(err)
-        })
-    },[setDataPeriodos]);
     return (
         <>
         <div>
@@ -34,7 +29,7 @@ function ConsumoEnergiaCliente() {
             <h2>Calculadora de Consumo de Energía particular</h2>
             <div>
                 <label htmlFor="">Month to pay</label>
-                <input type="text" disabled value={dataPeriodos.periodo} name="" id="" />
+                <input type="text" disabled value={periodoSeleccionado ? periodoSeleccionado.periodo : ''} name="" id="" />
             </div>
             <div>
                 <label>Consumo del período (kWh): </label>

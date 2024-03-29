@@ -1,10 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Periodoindividual from './periodos'
+import usePeriodoSeleccionado from "../Zustand/useSelectPeriod"
 
 function ListadoCalendario() {
 
-    const [dataPeriodos, setDataPeriodos] = useState([])
+    
+    const [dataPeriodos, setDataPeriodos] = useState([]);
+    const { setPeriodoSeleccionado} = usePeriodoSeleccionado();
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/rutas/obtenerperiodos')
@@ -16,10 +19,14 @@ function ListadoCalendario() {
         })
     },[setDataPeriodos]);
 
+    const seleccionarPeriodo = (periodo) => {
+        setPeriodoSeleccionado(periodo);
+    }
+
     const listadoPeriodos = dataPeriodos.map(periodo => {
         return(
             <div className="listadoperiodos">
-                <Periodoindividual periodos={periodo}/>
+                <Periodoindividual periodos={periodo} onClick={() => seleccionarPeriodo(periodo)}/>
             </div>
         )
     })

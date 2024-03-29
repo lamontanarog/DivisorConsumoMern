@@ -4,20 +4,25 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import './style.css'
 import ListadoCalendario from "./listadocalendario";
+import useCalcularStore from "../Zustand/useCalculo"
 
 
 function Costobase() {
-    const [costoKwh, setCostoKwh] = useState(0);
+
+    const {costoKwh, setCostoKwh, costoMensual, setCostoMensual, costoxKwh, setCostoxKwh, calcularCostoxKwh} = useCalcularStore();
+    
+   /* const [costoKwh, setCostoKwh] = useState(0);
     const [costoMensual, setCostoMensual] = useState(0);
-    const [costoxKwh, setCostoxKwh] = useState(0);
+    const [costoxKwh, setCostoxKwh] = useState(0); */
     const [periodo, setPeriodo] = useState('');
     const [anio, setAnio] = useState(0);
 
-
+ /*
     const calcularCostoxKwh = () => {
         const costoxKwh = costoMensual / costoKwh;
         setCostoxKwh(costoxKwh);
     }
+    */
 
     function agregarPeriodo() {
         var periodos = {
